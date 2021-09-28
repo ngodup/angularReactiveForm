@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
   <h4> Angular reactive form Example</h4>
   <div class="card">
     <div class="card-block">
@@ -6,6 +6,9 @@
         <div class="form-group">
           <label>Name of students:</label>
           <input type="number" class="form-control" formControlName="number" />
+          <div class="alert alert-danger" *ngIf="!form.controls['number'].valid && form.controls['number'].touched">
+            Total number of student is required.
+          </div>
         </div>
 
         <div class="form-group">
@@ -13,6 +16,10 @@
           <select class="form-control" formControlName="category">
             <option *ngFor="let item of departments" value="{{item.name}}">{{item.name}}</option>
           </select>
+          <div class="alert alert-danger"
+            *ngIf="!form.controls['category'].valid && form.controls['category'].touched">
+            Department is required
+          </div>
         </div>
 
         <div class="form-group">
@@ -24,12 +31,18 @@
         <div class="form-group">
           <label>Description :</label>
           <textarea class="form-control" formControlName="description"></textarea>
+          <div class="alert alert-danger"
+            *ngIf="!form.controls['description'].valid && form.controls['description'].touched">
+            Description should be of minimum 10 and maximun 50 characters
+          </div>
         </div>
 
         <div class="form-group">
           <label>Class on</label>
-          <input type="radio" name="classType" class="form-control" value="Day class" formControlName="classType">Day Class
-          <input type="radio" name="classType" class="form-control" value="Evening" formControlName="classType"> Evening Class
+          <input type="radio" name="classType" class="form-control" value="Day class" formControlName="classType">Day
+          Class
+          <input type="radio" name="classType" class="form-control" value="Evening" formControlName="classType"> Evening
+          Class
         </div>
 
         <button class="btn btn-primary btn-block">Submit</button>
@@ -37,9 +50,4 @@
     </div>
     <p>Form Element : {{ form.value | json}}</p>
   </div>
-
-</div> -->
-<!-- End of container div -->
-<!-- <app-form-demo></app-form-demo> -->
-<app-custom-validator-form></app-custom-validator-form>
-<router-outlet></router-outlet>
+</div>

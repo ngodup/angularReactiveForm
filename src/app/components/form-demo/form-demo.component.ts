@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { MockDepartment } from 'src/assets/data/mockDepartment';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-form-demo',
+  templateUrl: './form-demo.component.html',
+  styleUrls: ['./form-demo.component.scss']
 })
-export class AppComponent {
+export class FormDemoComponent implements OnInit {
   title: string = 'Angular Reactive Form';
   form = new FormGroup({});
   departments: any[] = [];
@@ -16,11 +16,11 @@ export class AppComponent {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      number : '',
-      description: '',
-      sinceFrom: '',
-      category: '',
-      classType: '',
+      'number': [null, Validators.required],
+      'description': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(15)]],
+      'sinceFrom': [''],
+      'category': [null, Validators.required],
+      'classType': [],
     });
     this.departments = MockDepartment;
   }
@@ -28,4 +28,5 @@ export class AppComponent {
   submit(form: NgForm) {
     console.log(form);
   }
+
 }
